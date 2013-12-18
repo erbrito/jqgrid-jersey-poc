@@ -5,17 +5,10 @@ A Jersery 2 RESTful proof of concept to create jqgrid data
 
 * this version uses gradle
 * it is a multi project
-* it is deployed on jetty
+* it is not deployed on jetty. We want it to deploy to a JEE6 Server
 
-To deploy you need to install gradle and execute:
-
-$ gradle assemble
-$ gradle runJetty9
-
-To test it you can go to:
-
-http://localhost:9393/WorkList.jsp
-
-or http://localhost:9393/Form1.html
-
-
+TODO:
+1) we need to remove the jetty dependencies
+2) remove the extra configuration from Jersey (WELD & H2k)
+3) remove the H2K wiring annotations
+4) mavenize the project
