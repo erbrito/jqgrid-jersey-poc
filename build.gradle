@@ -1,0 +1,270 @@
+allprojects {
+    apply plugin : 'java'
+    apply plugin : 'groovy'
+    apply plugin : 'eclipse'
+    apply plugin : 'maven'
+    //apply plugin: 'application'
+    sourceCompatibility = 1.7
+        targetCompatibility = 1.7
+        version = '1.0'
+        repositories {
+        mavenCentral()
+        maven {
+            url "http://maven.restlet.org"
+        }
+        maven {
+            url "http://repository.jboss.org/nexus/content/groups/public-jboss/"
+        }
+        maven {
+            url "http://download.java.net/maven/2/"
+        }
+        maven {
+            url 'http://repository.jboss.org/nexus/content/groups/public'
+        }
+        
+    }
+    dependencies {
+        testCompile group : 'junit',
+        name : 'junit',
+        version : '4.11'
+        compile group : 'commons-collections',
+        name : 'commons-collections',
+        version : '3.2'
+    }
+}
+
+configurations {
+    xjc
+}
+
+dependencies {
+    compile 'javax.mail:mail:1.4.7',
+    'org.codehaus.groovy:groovy-all:2.1.2'
+    xjc(
+		['com.sun.xml.bind:jaxb-xjc:2.2.5-2'],
+        ['com.sun.xml.bind:jaxb-impl:2.2-EA']
+		)
+    
+}
+
+sourceCompatibility = 1.7
+    
+    /*
+		jar {
+		manifest {
+		def manifestClasspath = configurations.runtime.collect { it.getName() }.join(' ')
+		attributes ('Main-Class': 'org.erbrito.routerconf.MyCamelConfiguration', 'Class-Path': manifestClasspath)
+		}
+		}
+	*/
+    /*
+		task release(type: Tar, dependsOn: assemble) {
+		extension = "tar.gz"
+		
+		compression = Compression.GZIP
+		
+		into('lib') {
+		from configurations.runtime
+		//from configurations.compile
+		}
+		}
+	*/
+    
+    /*
+		sourceSets {
+		main {
+		java { srcDirs "src/main/generated/java" }
+		}
+		}
+     */
+    
+task makeGenDirs << {
+    mkdir('src/main/generated/java')
+}
+
+/*
+
+	task createXsd(type: JavaExec){
+		main = "-jar"
+		args =[
+		'c:\\javaTools\\trang-20030619\\trang-20030619\\trang.jar',
+		'src/main/resources/sampleXmlResponse.xml',
+		'src/main/resources/sampleXmlResponse3.xsd'
+
+		]
+	}
+
+	task xjc(dependsOn: createXsd  ) {
+		doLast{
+			ant {
+			taskdef(
+			name: 'xjc',
+			classname: 'com.sun.tools.xjc.XJCTask',
+			classpath:configurations.xjc.asPath)
+			xjc(
+			destdir: 'src/main/java',
+			package: 'com.model.rest'){
+				schema(
+				dir: 'src/main/resources',
+				includes: 'sampleXmlResponse3.xsd'
+				//includes: 'sampleXmlValue.xsd'
+				)
+				}
+			}
+		}
+	}
+	//xjc.dependsOn  makeGenDirs
+	compileJava.dependsOn(xjc)
+ */
+
+project(':jqgridjersey_model') {
+    configurations {
+        providedCompile
+    }
+    dependencies {
+        compile('javax.mail:mail:1.4.7',
+            'org.codehaus.groovy:groovy-all:2.1.1')
+        compile('org.glassfish.hk2:hk2-api:2.2.0-b21')
+        providedCompile('javax.servlet:servlet-api:3.0-alpha-1')
+        /*{
+        //exclude group:'javax.inject'
+        exclude group:'javax.inject', module:'javax.inject'
+        }*/
+    }
+}
+
+project(':jqgridjersey_web') {
+    apply plugin : 'groovy'
+    apply plugin : 'war'
+    apply plugin : 'jetty'
+    apply plugin : 'eclipse-wtp'
+    //apply plugin:'arquillian'
+    
+    /*
+    arquillian {
+    debug = true
+    deployable = war.archivePath
+    
+    containers {
+    jetty {
+    version = '8'
+    type = 'embedded'
+    config = ['bindHttpPort': 8080, 'bindAddress': '127.0.0.1', 'jettyPlus': false]
+    
+    dependencies {
+    adapter 'org.jboss.arquillian.container:arquillian-jetty-embedded-7:1.0.0.CR1'
+    container 'org.eclipse.jetty:jetty-webapp:8.1.11.v20130520'
+    container group: 'org.eclipse.jetty', name: 'jetty-plus', version: '8.1.11.v20130520'
+    }
+    }
+    }
+    }
+     */
+    
+    jettyRun {
+        //GRADLE_OPTS="-Xdebug -Xrunjdwp:transport=dt_socket,address=9999,server=y,suspend=n"
+        gradleOpts = "-Xdebug -Xrunjdwp:transport=dt_socket,address=5005,server=y,suspend=n"
+            httpPort = 9393
+            stopPort = 9323
+            stopKey = 'stopingit'
+            contextPath = 'jqgridjerseyPOC'
+    }
+    
+    jettyStop {
+        stopPort = 9323
+            stopKey = 'stopingit'
+    }
+    ext {
+        //jettyVersion = '8.1.0.RC0'
+        jettyVersion = '8.1.8.v20121106'
+            //jettyVersion = '8.1.8.v20130916'
+            //jettyVersion = '7.6.13.v20130916'
+            jettyPort = 9393
+            jettyStopPort = 9323
+            jettyStopKey = 'stopingit'
+    }
+    
+    configurations {
+        jetty8
+        jetty9
+        jetty9bis
+    }
+    
+    dependencies {
+        
+        compile project(':jqgridjersey_model'),
+			'org.glassfish.jersey.media:jersey-media-moxy:2.4.1',
+			'org.glassfish.jersey.media:jersey-media-json-processing:2.4.1',
+			'org.glassfish.jersey.containers:jersey-container-servlet:2.4.1',
+			'org.glassfish.jersey.ext:project:2.4.1',
+			'org.slf4j:slf4j-api:1.7.5',
+			'org.codehaus.groovy:groovy-all:2.1.1',
+			'org.codehaus.groovy:groovy-servlet:2.1.1',
+			'org.jboss.weld.servlet:weld-servlet:2.1.0.Final',
+			'org.eclipse.jetty:jetty-servlet:9.0.6.v20130930',
+			'org.eclipse.jetty:jetty-server:9.0.6.v20130930',
+			'javax.ws.rs:javax.ws.rs-api:2.0',
+			'javax.servlet:jstl:1.2',
+			'javax.annotation:javax.annotation-api',
+			'javax.enterprise:cdi-api:1.1',
+			'javax.servlet:servlet-api:3.0-alpha-1',
+			'javax.annotation:javax.annotation-api',
+			'org.slf4j:slf4j-jdk14:1.7.5'
+        
+        providedCompile 'org.eclipse.jetty:jetty-server:9.0.6.v20130930',
+			'javax.enterprise:cdi-api:1.1',
+			'javax.servlet:servlet-api:3.0-alpha-1'
+        
+        runtime 'javax.ws.rs:javax.ws.rs-api:2.0',
+			'javax.servlet:jstl:1.2',
+			'javax.annotation:javax.annotation-api'
+        
+        jetty9 'org.eclipse.jetty:jetty-runner:9.0.6.v20130930'
+        
+        
+    }
+    
+   
+    
+    task showMyDeps() {
+        configurations.compile.each {
+            println it
+        }
+        copy {
+            from configurations.compile
+            into "$buildDir/myLibs"
+        }
+    }
+    
+    
+    
+    task runJetty9(type : JavaExec) {
+        main = "org.eclipse.jetty.runner.Runner"
+            //args '--path /jqgridjerseyPOC'
+            args '--port'
+            args 9393
+            args '--stop-port'
+            args 9323
+            args '--stop-key'
+            args 'stopingit'
+            args '--log'
+            args 'myDroolsPOCGrWar.log'
+            //args '--config'
+            //args 'jetty.xml'
+            args '--path'
+            args '/'
+            args 'src/main/webapp/'
+			args '--lib'
+			args "./build/myLibs/"
+			args '--classes'
+			args "./build/classes/main/"
+			classpath configurations.jetty9,
+			configurations.compile,
+			".\\jqgridjersey_web\\build\\classes\\main\\"
+    }
+    
+    task showWarPath() {
+        println war.archivePath
+    }
+    
+}
