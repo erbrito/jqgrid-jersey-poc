@@ -161,48 +161,24 @@ project(':jqgridjersey_web') {
     }
      */
     
-    jettyRun {
-        //GRADLE_OPTS="-Xdebug -Xrunjdwp:transport=dt_socket,address=9999,server=y,suspend=n"
-        gradleOpts = "-Xdebug -Xrunjdwp:transport=dt_socket,address=5005,server=y,suspend=n"
-            httpPort = 9393
-            stopPort = 9323
-            stopKey = 'stopingit'
-            contextPath = 'jqgridjerseyPOC'
-    }
     
-    jettyStop {
-        stopPort = 9323
-            stopKey = 'stopingit'
-    }
-    ext {
-        //jettyVersion = '8.1.0.RC0'
-        jettyVersion = '8.1.8.v20121106'
-            //jettyVersion = '8.1.8.v20130916'
-            //jettyVersion = '7.6.13.v20130916'
-            jettyPort = 9393
-            jettyStopPort = 9323
-            jettyStopKey = 'stopingit'
-    }
-    
-    configurations {
-        jetty8
-        jetty9
-        jetty9bis
-    }
     
     dependencies {
         
         compile project(':jqgridjersey_model'),
+			/*
 			'org.glassfish.jersey.media:jersey-media-moxy:2.4.1',
 			'org.glassfish.jersey.media:jersey-media-json-processing:2.4.1',
 			'org.glassfish.jersey.containers:jersey-container-servlet:2.4.1',
 			'org.glassfish.jersey.ext:project:2.4.1',
 			'org.slf4j:slf4j-api:1.7.5',
+			*/
 			'org.codehaus.groovy:groovy-all:2.1.1',
-			'org.codehaus.groovy:groovy-servlet:2.1.1',
-			'org.jboss.weld.servlet:weld-servlet:2.1.0.Final',
-			'org.eclipse.jetty:jetty-servlet:9.0.6.v20130930',
-			'org.eclipse.jetty:jetty-server:9.0.6.v20130930',
+			'org.codehaus.groovy:groovy-servlet:2.1.1'
+			//'org.jboss.weld.servlet:weld-servlet:2.1.0.Final',
+			//'org.eclipse.jetty:jetty-servlet:9.0.6.v20130930',
+			//'org.eclipse.jetty:jetty-server:9.0.6.v20130930',
+			/*
 			'javax.ws.rs:javax.ws.rs-api:2.0',
 			'javax.servlet:jstl:1.2',
 			'javax.annotation:javax.annotation-api',
@@ -210,16 +186,26 @@ project(':jqgridjersey_web') {
 			'javax.servlet:servlet-api:3.0-alpha-1',
 			'javax.annotation:javax.annotation-api',
 			'org.slf4j:slf4j-jdk14:1.7.5'
+			*/
         
         providedCompile 'org.eclipse.jetty:jetty-server:9.0.6.v20130930',
 			'javax.enterprise:cdi-api:1.1',
-			'javax.servlet:servlet-api:3.0-alpha-1'
+			'javax.servlet:servlet-api:3.0-alpha-1',
+			//added
+			'javax.ws.rs:javax.ws.rs-api:2.0',
+			'javax.servlet:jstl:1.2',
+			//'javax.annotation:javax.annotation-api',
+			'javax.enterprise:cdi-api:1.1',
+			'javax.servlet:servlet-api:3.0-alpha-1',
+			'org.slf4j:slf4j-api:1.7.5',
+			'org.slf4j:slf4j-jdk14:1.7.5',
+			'cglib:cglib:2.2.2'
         
         runtime 'javax.ws.rs:javax.ws.rs-api:2.0',
 			'javax.servlet:jstl:1.2',
-			'javax.annotation:javax.annotation-api'
+			'javax.annotation:javax.annotation-api:1.2'
         
-        jetty9 'org.eclipse.jetty:jetty-runner:9.0.6.v20130930'
+        
         
         
     }
@@ -238,30 +224,6 @@ project(':jqgridjersey_web') {
     
     
     
-    task runJetty9(type : JavaExec) {
-        main = "org.eclipse.jetty.runner.Runner"
-            //args '--path /jqgridjerseyPOC'
-            args '--port'
-            args 9393
-            args '--stop-port'
-            args 9323
-            args '--stop-key'
-            args 'stopingit'
-            args '--log'
-            args 'myDroolsPOCGrWar.log'
-            //args '--config'
-            //args 'jetty.xml'
-            args '--path'
-            args '/'
-            args 'src/main/webapp/'
-			args '--lib'
-			args "./build/myLibs/"
-			args '--classes'
-			args "./build/classes/main/"
-			classpath configurations.jetty9,
-			configurations.compile,
-			".\\jqgridjersey_web\\build\\classes\\main\\"
-    }
     
     task showWarPath() {
         println war.archivePath
