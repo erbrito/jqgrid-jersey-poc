@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="2.0">
+	<wb-module deploy-name="jqgridjersey_ee_web">
+		<property name="context-root" value="jqgridjersey_ee_web"/>
+		<wb-resource deploy-path="/WEB-INF/classes" source-path="src/main/resources"/>
+		<wb-resource deploy-path="/WEB-INF/classes" source-path="src/main/java"/>
+		<wb-resource deploy-path="/WEB-INF/classes" source-path="src/main/groovy"/>
+		<wb-resource deploy-path="/" source-path="src/main/webapp"/>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/resource/jqgridjersey_ee_model/jqgridjersey_ee_model">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/BMOEXB0/.gradle/caches/artifacts-14/filestore/org.codehaus.groovy/groovy-templates/2.1.1/jar/501c34c24417786ee3cc52d0629c63286bf9e797/groovy-templates-2.1.1.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/BMOEXB0/.gradle/caches/artifacts-14/filestore/org.codehaus.groovy/groovy/2.1.1/jar/2e6d33d3258bb08857b546b00dde819405de6daf/groovy-2.1.1.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/BMOEXB0/.gradle/caches/artifacts-14/filestore/antlr/antlr/2.7.7/jar/83cd2cd674a217ade95a4bb83a8a14f351f48bd0/antlr-2.7.7.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/BMOEXB0/.gradle/caches/artifacts-14/filestore/org.ow2.asm/asm-analysis/4.0/jar/1c45d52b6f6c638db13cf3ac12adeb56b254cdd7/asm-analysis-4.0.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/BMOEXB0/.gradle/caches/artifacts-14/filestore/cglib/cglib/3.0/jar/a8149c14534eefa763a16534507dcbaec6eb0cf8/cglib-3.0.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/BMOEXB0/.gradle/caches/artifacts-14/filestore/javax.annotation/javax.annotation-api/1.2/jar/479c1e06db31c432330183f5cae684163f186146/javax.annotation-api-1.2.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/BMOEXB0/.gradle/caches/artifacts-14/filestore/org.ow2.asm/asm/4.0/jar/659add6efc75a4715d738e73f07505246edf4d66/asm-4.0.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/BMOEXB0/.gradle/caches/artifacts-14/filestore/commons-collections/commons-collections/3.2/jar/f951934aa5ae5a88d7e6dfaa6d32307d834a88be/commons-collections-3.2.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/BMOEXB0/.gradle/caches/artifacts-14/filestore/org.ow2.asm/asm-commons/4.0/jar/a839ec6737d2b5ba7d1878e1a596b8f58aa545d9/asm-commons-4.0.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/BMOEXB0/.gradle/caches/artifacts-14/filestore/org.ow2.asm/asm-tree/4.0/jar/67bd266cd17adcee486b76952ece4cc85fe248b8/asm-tree-4.0.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/BMOEXB0/.gradle/caches/artifacts-14/filestore/org.codehaus.groovy/groovy-servlet/2.1.1/jar/386076d3c38866aa8cde3b056fa60f0071d9b424/groovy-servlet-2.1.1.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/BMOEXB0/.gradle/caches/artifacts-14/filestore/org.codehaus.groovy/groovy-xml/2.1.1/jar/24f035041e9d9070739383b90f07133c289af1c6/groovy-xml-2.1.1.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/BMOEXB0/.gradle/caches/artifacts-14/filestore/org.ow2.asm/asm-util/4.0/jar/d7a65f54cda284f9706a750c23d64830bb740c39/asm-util-4.0.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/BMOEXB0/.gradle/caches/artifacts-14/filestore/org.codehaus.groovy/groovy-all/2.1.1/jar/346ed02f8d626f54d0a9b5dd9a6d492881de0cdb/groovy-all-2.1.1.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+	</wb-module>
+</project-modules>
