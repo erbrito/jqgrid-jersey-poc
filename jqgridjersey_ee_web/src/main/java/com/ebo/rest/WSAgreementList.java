@@ -36,7 +36,7 @@ public class WSAgreementList {
     //TODO: Guice Integration - take a look at https://hk2.java.net/guice-bridge/index.html
     //TODO: weld integration - take a look at http://agorava.org/news/2012/07/10/Starting-a-CDI-webapp-from-Maven-with-Weld-servlet-and-jetty-plugin/
     @Inject
-    //@Named("jaja3")
+    @Named("jaja3")
     private AgrmDetViewFiller fillerByH2K;
     static {
         columnTable.put("title", "title");
