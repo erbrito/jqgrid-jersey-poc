@@ -1,1 +1,1 @@
-include 'jqgridjersey_web', 'jqgridjersey_model' 
+include 'jqgridjersey_ee_web', 'jqgridjersey_ee_model' 
